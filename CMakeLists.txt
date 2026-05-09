@@ -16,7 +16,6 @@ include(ExamplesWarnings)
 set(EACP_WEBVIEW_VITE_BUILD ON CACHE BOOL "Drive the Vite build from CMake")
 
 find_package(EACP REQUIRED)
-find_package(Miro REQUIRED)
 
 if (PROJECT_IS_TOP_LEVEL)
     add_subdirectory(Apps)
