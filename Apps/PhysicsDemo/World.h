@@ -7,21 +7,26 @@
 class World
 {
 public:
-    static World& instance();
+    World();
 
     void step(float timeStep);
     void reset();
-    WorldState snapshot() const;
+    SceneSnapshot sceneSnapshot() const;
+    WorldTick tickSnapshot();
     int launchBall(const LaunchRequest& request);
+    void setRainEnabled(bool enabled);
 
     World(const World&) = delete;
     World& operator=(const World&) = delete;
 
 private:
-    World();
 
     void buildScene();
     void clearBodies();
+    void spawnRainSphere();
+    void spawnFountainSphere();
+    void stir();
+    void explosion();
 
     struct Body
     {
@@ -37,4 +42,7 @@ private:
     std::vector<Body> bodies = {};
     double simulatedTime = 0;
     int nextId = 0;
+    bool rainEnabled = false;
+    int tickCounter = 0;
+    std::vector<int> pendingRemovedIds = {};
 };

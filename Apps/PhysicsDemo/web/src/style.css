@@ -39,3 +39,8 @@ html, body
     color: white;
     cursor: pointer;
 }
+
+#hud button.active
+{
+    background: #e36b8c;
+}

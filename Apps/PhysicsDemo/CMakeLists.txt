@@ -8,7 +8,7 @@ find_package(ReactPhysics3D REQUIRED)
 # link into the schema tool.
 eacp_add_webview_app(PhysicsDemo
         SOURCES         Main.cpp
-        COMMAND_SOURCES Commands.cpp World.cpp
+        COMMAND_SOURCES Commands.cpp World.cpp PhysicsThread.cpp
         WEB_DIR         ${CMAKE_CURRENT_SOURCE_DIR}/web
         BUNDLE_ID       com.eacpexamples.physicsdemo
         BUNDLE_NAME     "Physics Demo")

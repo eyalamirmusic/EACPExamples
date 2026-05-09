@@ -6,13 +6,22 @@ ResetResponse reset()
     return {.ok = true};
 }
 
+SceneSnapshot getScene()
+{
+    return getSceneFromWorld();
+}
+
 LaunchResponse launchBall(const LaunchRequest& request)
 {
     return {.id = launchBallInWorld(request)};
 }
 
-MIRO_EXPORT_COMMANDS(reset, launchBall)
+RainResponse setRain(const RainRequest& request)
+{
+    setRainInWorld(request.enabled);
+    return {.ok = true};
+}
 
-// Event payload types: not reachable through any command, so register
-// them explicitly so the schema codegen emits TS interfaces for them.
-MIRO_EXPORT_TYPES(WorldState, BodyState, Quat)
+MIRO_EXPORT_COMMANDS(reset, getScene, launchBall, setRain)
+
+MIRO_EXPORT_TYPES(SceneSnapshot, WorldTick, BodyDescriptor, BodyTransform, Quat)

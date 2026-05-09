@@ -1,6 +1,7 @@
 #include "WorldApi.h"
 #include <eacp/Core/Threads/Timer.h>
 #include <eacp/WebView/WebView.h>
+#include <ea_data_structures/ea_data_structures.h>
 
 using namespace eacp;
 using namespace Graphics;
@@ -17,7 +18,7 @@ struct PhysicsDemoApp
     void tick()
     {
         stepWorld(1.0f / 60.0f);
-        bridge.send("worldState", snapshotWorld());
+        bridge.send("worldTick", snapshotTickFromWorld());
     }
 
     WebView webView {embeddedOptions("WebApp")};

@@ -8,6 +8,17 @@ export interface Vec3 {
     z: number;
 }
 
+export interface BodyDescriptor {
+    id: number;
+    isSphere: boolean;
+    radius: number;
+    halfExtents: Vec3;
+}
+
+export interface SceneSnapshot {
+    bodies: BodyDescriptor[];
+}
+
 export interface LaunchRequest {
     origin: Vec3;
     direction: Vec3;
@@ -18,6 +29,14 @@ export interface LaunchResponse {
     id: number;
 }
 
+export interface RainRequest {
+    enabled: boolean;
+}
+
+export interface RainResponse {
+    ok: boolean;
+}
+
 export interface Quat {
     x: number;
     y: number;
@@ -25,17 +44,15 @@ export interface Quat {
     w: number;
 }
 
-export interface BodyState {
+export interface BodyTransform {
     id: number;
     position: Vec3;
     rotation: Quat;
-    halfExtents: Vec3;
-    radius: number;
-    isSphere: boolean;
 }
 
-export interface WorldState {
+export interface WorldTick {
     time: number;
-    bodies: BodyState[];
+    bodies: BodyTransform[];
+    removedIds: number[];
 }
 

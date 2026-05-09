@@ -22,24 +22,39 @@ struct Quat
     MIRO_REFLECT(x, y, z, w)
 };
 
-struct BodyState
+struct BodyDescriptor
+{
+    int id = 0;
+    bool isSphere = true;
+    float radius = 0;
+    Vec3 halfExtents = {};
+
+    MIRO_REFLECT(id, isSphere, radius, halfExtents)
+};
+
+struct BodyTransform
 {
     int id = 0;
     Vec3 position = {};
     Quat rotation = {};
-    Vec3 halfExtents = {};
-    float radius = 0;
-    bool isSphere = true;
 
-    MIRO_REFLECT(id, position, rotation, halfExtents, radius, isSphere)
+    MIRO_REFLECT(id, position, rotation)
 };
 
-struct WorldState
+struct SceneSnapshot
+{
+    std::vector<BodyDescriptor> bodies = {};
+
+    MIRO_REFLECT(bodies)
+};
+
+struct WorldTick
 {
     double time = 0;
-    std::vector<BodyState> bodies = {};
+    std::vector<BodyTransform> bodies = {};
+    std::vector<int> removedIds = {};
 
-    MIRO_REFLECT(time, bodies)
+    MIRO_REFLECT(time, bodies, removedIds)
 };
 
 struct ResetResponse
@@ -63,4 +78,18 @@ struct LaunchResponse
     int id = 0;
 
     MIRO_REFLECT(id)
+};
+
+struct RainRequest
+{
+    bool enabled = false;
+
+    MIRO_REFLECT(enabled)
+};
+
+struct RainResponse
+{
+    bool ok = true;
+
+    MIRO_REFLECT(ok)
 };

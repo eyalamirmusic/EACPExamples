@@ -3,6 +3,8 @@
 #include "Types.h"
 
 void resetWorld();
-WorldState snapshotWorld();
+SceneSnapshot getSceneFromWorld();
+WorldTick snapshotTickFromWorld();
 void stepWorld(float timeStep);
 int launchBallInWorld(const LaunchRequest& request);
+void setRainInWorld(bool enabled);
