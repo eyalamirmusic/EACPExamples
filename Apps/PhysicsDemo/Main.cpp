@@ -18,11 +18,12 @@ struct PhysicsDemoApp
     void tick()
     {
         stepWorld(1.0f / 60.0f);
-        bridge.send("worldTick", snapshotTickFromWorld());
+        bridge.emit("worldTick", snapshotTickFromWorld());
     }
 
+    Miro::Bridge bridge;
     WebView webView {embeddedOptions("WebApp")};
-    WebViewBridge bridge {webView};
+    WebViewBridge transport {webView, bridge};
     Window window;
     Threads::Timer timer {[this] { tick(); }, 60};
 };
