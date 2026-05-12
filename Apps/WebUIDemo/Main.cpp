@@ -10,12 +10,11 @@ struct WebUIDemoApp
         setApplicationMenuBar(buildDefaultWebViewMenuBar());
         window.setContentView(webView);
 
-        bridge.useStaticRegistry();
+        transport.getBridge().useStaticRegistry();
     }
 
-    Miro::Bridge bridge;
     WebView webView {embeddedOptions("WebApp")};
-    WebViewBridge transport {webView, bridge};
+    WebViewBridge transport {webView};
     Window window;
 };
 

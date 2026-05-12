@@ -12,18 +12,17 @@ struct PhysicsDemoApp
     {
         setApplicationMenuBar(buildDefaultWebViewMenuBar());
         window.setContentView(webView);
-        bridge.useStaticRegistry();
+        transport.getBridge().useStaticRegistry();
     }
 
     void tick()
     {
         stepWorld(1.0f / 60.0f);
-        bridge.emit("worldTick", snapshotTickFromWorld());
+        transport.getBridge().emit("worldTick", snapshotTickFromWorld());
     }
 
-    Miro::Bridge bridge;
     WebView webView {embeddedOptions("WebApp")};
-    WebViewBridge transport {webView, bridge};
+    WebViewBridge transport {webView};
     Window window;
     Threads::Timer timer {[this] { tick(); }, 60};
 };
