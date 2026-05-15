@@ -1,7 +1,5 @@
 #include "WorldApi.h"
-#include <eacp/Core/Threads/Timer.h>
 #include <eacp/WebView/WebView.h>
-#include <ea_data_structures/ea_data_structures.h>
 
 using namespace eacp;
 using namespace Graphics;
@@ -12,7 +10,6 @@ struct PhysicsDemoApp
     {
         setApplicationMenuBar(buildDefaultWebViewMenuBar());
         window.setContentView(webView);
-        transport.getBridge().useStaticRegistry();
     }
 
     void tick()

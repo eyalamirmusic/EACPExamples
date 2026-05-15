@@ -9,8 +9,6 @@ struct WebUIDemoApp
     {
         setApplicationMenuBar(buildDefaultWebViewMenuBar());
         window.setContentView(webView);
-
-        transport.getBridge().useStaticRegistry();
     }
 
     WebView webView {embeddedOptions("WebApp")};
